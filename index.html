@@ -3,60 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de Fotos</title>
+    <title>Galeria de Fotos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            width: 100%;
             text-align: center;
-            background-color: #f9f9f9;
         }
-        h1 {
-            color: #333;
-        }
-        #preview {
+        main {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
             justify-content: center;
-            margin-top: 20px;
+            gap: 10px;
+            padding: 20px;
+            max-width: 1200px;
         }
-        .photo {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+        img {
+            max-width: 100%;
+            height: auto;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+        img:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <h1>Envie suas Fotos</h1>
-    <input type="file" id="fileInput" accept="image/*" multiple>
-    <div id="preview"></div>
-
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const preview = document.getElementById('preview');
-
-        fileInput.addEventListener('change', () => {
-            preview.innerHTML = ''; // Limpar a pré-visualização
-            const files = Array.from(fileInput.files);
-
-            files.forEach(file => {
-                const reader = new FileReader();
-
-                reader.onload = () => {
-                    const img = document.createElement('img');
-                    img.src = reader.result;
-                    img.className = 'photo';
-                    preview.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
-            });
-        });
-    </script>
+    <header>
+        <h1>Galeria de Fotos</h1>
+    </header>
+    <main>
+        <!-- Substitua os links abaixo pelos links das suas fotos -->
+        <img src="https://cdn.discordapp.com/attachments/1319460424911032404/1322681178301534209/image.png?ex=6771c257&is=677070d7&hm=41f2dbab616bb2568da32e77e066079514279bc6239c4bc53c68444e223faa55&" alt="Foto 1">
+        <img src="https://via.placeholder.com/300" alt="Foto 2">
+        <img src="https://via.placeholder.com/300" alt="Foto 3">
+        <img src="https://via.placeholder.com/300" alt="Foto 4">
+        <img src="https://via.placeholder.com/300" alt="Foto 5">
+    </main>
 </body>
 </html>
