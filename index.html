@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Fotos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        #preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Envie suas Fotos</h1>
+    <input type="file" id="fileInput" accept="image/*" multiple>
+    <div id="preview"></div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', () => {
+            preview.innerHTML = ''; // Limpar a pré-visualização
+            const files = Array.from(fileInput.files);
+
+            files.forEach(file => {
+                const reader = new FileReader();
+
+                reader.onload = () => {
+                    const img = document.createElement('img');
+                    img.src = reader.result;
+                    img.className = 'photo';
+                    preview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+</body>
+</html>
